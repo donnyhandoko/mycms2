@@ -3,6 +3,8 @@ require_once('cmsBase.php');
 class templateFunctions extends CmsBase{
 	//fungsi pengaturan template
 	var $templateName = 'default';
+	
+	var $widgetPositions=array();
 
 	function show ()
 	{
@@ -26,7 +28,29 @@ class templateFunctions extends CmsBase{
 		$app=new CmsApplication();
 		$app->run();
 }
+	function widgetOutput($position='default')
+	{
+	if(!empty($this->widgetPositions[$position]))
+	{
+	$widgets=$this->widgetPositions[$position];
+	foreach($widgets as $widgetName)
+	{
+	require_once('widgets/'.$widgetName.'/'.$widgetName.'.php');
+	$widgetclass=ucfirst($widgetName).'Widget';
+	$widget=new $widgetclass();
+	$widget->run($widgetName);
+		}
+	}
+}
+	function setWidget($position,$widgetName)
+{
+	if(empty($this->widgetPositions[$position])) 
+{
+	$this->widgetPositions[$position]=array($widgetName);
+	} else {
+	array_push($this->widgetPositions[$position],$widgetName);
+		}        
+	}
 
 }
-
 ?>
