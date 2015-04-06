@@ -3,9 +3,9 @@ require_once('includes/cmsWidget.php');
 class CalculatorWidget extends CmsWidget{
     function display()
     {
-      if(!empty($this->parameters['use_scientific']) and $this->parameters['use_scientific']==true)
+      if(!empty($this->parameters['use_jam']) and $this->parameters['use_jam']==true)
       {
-        require($this->getWidgetPath().'template/scientific.php');
+        require($this->getWidgetPath().'template/jam.php');
       }
       else
       {
