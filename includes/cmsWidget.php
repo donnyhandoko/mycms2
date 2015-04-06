@@ -5,6 +5,7 @@ class cmsWidget extends cmsBase{
 	
 	var $widgetPath='';
 	var $widgetName='';
+	var $parameters=array();
 	
 	function setWidgetPath($widgetName)
 	{
@@ -21,7 +22,8 @@ class cmsWidget extends cmsBase{
 		echo 'Di sini akan ditmapilkan output widget';
 		}
 		
-		function run($widgetName)    {
+		function run($widgetName,$params)	{
+		$this->parameters =$params;
 		$this->setWidgetPath($widgetName);
 		$this->display();
     }
