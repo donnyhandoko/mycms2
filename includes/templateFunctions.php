@@ -1,6 +1,6 @@
 <?php
 require_once('cmsBase.php');
-class templateFunctions extends cmsBase{
+class templateFunctions extends CmsBase{
 	//fungsi pengaturan template
 	var $templateName = 'default';
 
@@ -20,10 +20,13 @@ class templateFunctions extends cmsBase{
 		$this->templateName = $templateName;
 	}
 
-	function show ()
-	{
-		require_once($this->getCurrentTemplatePath().'template.php');
-	}
+	function appOutput()
+{
+		require_once('includes/cmsApplication.php');
+		$app=new CmsApplication();
+		$app->run();
+}
+
 }
 
 ?>
