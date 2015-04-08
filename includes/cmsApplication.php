@@ -6,38 +6,16 @@ class cmsApplication extends cmsBase {
 	//disini kita dapat membuat fungsi yg dapat
 	//dipanggil oleh USER secara langsung
 
-	function run ()
+	function run()
 	{
-		//disini akan dibuat kode
-		//untuk mengatur seluruh proses dalam cmsAppliaction
-		//fungsi ini akan dipanggil dari TemplateFunction
-		if (isset($_REQUEST['task']))
-		{
-			$task=$_REQUEST['task'];
-			switch($task)
-			{
-				case 'addcontent':$this->addcontent ();break;
-				case 'anyothertask':$this->anyothertask ();break;
-				default : $this->display();break;
-			}
-		}else 
-		{
-			$this->display();
-		}
+	$method=(isset($_REQUEST['task']))?$_REQUEST['task']:'display';
+	$this->$method();
 	}
-	function addcontent ()
+	function display()
 	{
-		echo 'Disini akan dibuat fungsi menambah konten';
+	echo 'ini adalah tempat displaynya';
 	}
-
-	function display ()
-	{
-		echo 'Disini akan dibuat fungsi untuk menampilkan konten';
+	
 	}
-
-	function anyothertask ()
-	{
-		echo 'Disini akan ditulis fungsi yang lainnya';
-	}
-}
 ?>
+

@@ -23,10 +23,13 @@ class templateFunctions extends CmsBase{
 
 	function appOutput()
 {
-		require_once('includes/cmsApplication.php');
-		$app=new CmsApplication();
-		$app->run();
+    $appname = (isset($_REQUEST['app']))?$_REQUEST['app']:'default';
+    require_once('apps/'.$appname.'/'.$appname.'.php');
+    $application = ucfirst($appname).'Application';
+    $app = new $application();
+    $app->run();
 }
+
 	function widgetOutput($position='default')
 	{
 	if(!empty($this->widgetPositions[$position]))
